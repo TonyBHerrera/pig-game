@@ -31,6 +31,21 @@ let currentScore = 0;
 let activePlayer = 0;
 let playing = true;
 
+const init = function () {
+  const scores = [0, 0];
+  let currentScore = 0;
+  let activePlayer = 0;
+  let playing = true;
+
+  document.getElementById('score--0').textContent = scores[0];
+  document.getElementById('score--1').textContent = scores[1];
+  document.getElementById('current--0').textContent = currentScore;
+  document.getElementById('current--1').textContent = currentScore;
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
 // Rolling dice function
 
 btnRoll.addEventListener('click', function () {
@@ -66,7 +81,7 @@ btnHold.addEventListener('click', function () {
 
     // check if score is already 100
     // finish game if it is
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       document
         .querySelector(`.player--${activePlayer}`)
@@ -80,4 +95,8 @@ btnHold.addEventListener('click', function () {
       switchPlayer();
     }
   }
+});
+
+btnNew.addEventListener('click', function () {
+  init();
 });
